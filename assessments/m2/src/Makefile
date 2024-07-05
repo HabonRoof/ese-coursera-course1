@@ -62,7 +62,7 @@ all: $(OBJS)
 .PHONY:compile-all
 compile-all: $(SOURCES:.c=.asm)
 
-%.asm: %c
+%.asm: %.c
 	$(CC) -S $(CPPFLAGS) $(CFLAGS) $< -o $@
 
 .PHONY:clean
