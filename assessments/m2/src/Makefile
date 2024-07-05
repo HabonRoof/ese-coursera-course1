@@ -50,5 +50,5 @@ else
 	-mfloat-abi=hard -mfpu=fpv4-sp-d16 --specs=nosys.specs
 endif
 
-%.i:
+%.i:%.c
 	$(CC) -E $(CPPFLAGS) $(CFLAGS) 
