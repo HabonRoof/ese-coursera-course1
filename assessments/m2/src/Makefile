@@ -27,7 +27,7 @@ include sources.mk
 PLATFORM = HOST
 
 # Architectures Specific Flags
-LINKER_FILE = MKL25Z128xxx4_flash.ld
+LINKER_FILE = ../msp432p401r.lds
 CPU = cortex-m0plus
 ARCH = thumb
 SPECS = nosys.specs
