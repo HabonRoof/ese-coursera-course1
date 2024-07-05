@@ -56,15 +56,19 @@ endif
 %.o: %.c
 	$(CC) -c $(CPPFLAGS) $(CFLAGS) $< -o $@
 
-.PHONY:all
-all: $(OBJS)
+%.asm: %.c
+	$(CC) -S $(CPPFLAGS) $(CFLAGS) $< -o $@
+# not sure when need to use objdump to generate asm if we have source code
 
 .PHONY:compile-all
 compile-all: $(SOURCES:.c=.asm)
 
-%.asm: %.c
-	$(CC) -S $(CPPFLAGS) $(CFLAGS) $< -o $@
+.PHONY:build
+build: $(OUTPUT).out
+
+$(OUTPUT).out:$(OBJS)
+	$(CC) -c $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) -o $@
 
 .PHONY:clean
 clean:
-	rm -f $(OBJS) *.i *.o *.asm
+	rm -f $(OBJS) *.i *.o *.asm *.map *.out
