@@ -36,7 +36,7 @@ SPECS = nosys.specs
 CC = gcc
 LD = arm-none-eabi-ld
 LDFLAGS = -T msp432p401r.lds
-CPPFLAGS = $(addprefix -I, INCLUDES) $(SOURCES)
+CPPFLAGS = $(addprefix -I, $(INCLUDES)) $(SOURCES)
 CFLAGS = -Wall -Werror -g -O0 -std=c99
 OUTPUT = c1m2
 OBJS = $(SRCS:.c=.o)
