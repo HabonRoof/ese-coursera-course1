@@ -36,7 +36,7 @@ SPECS = nosys.specs
 CC =gcc
 LD =arm-none-eabi-ld
 LDFLAGS =-T msp432p401r.lds
-CPPFLAGS =$(addprefix -I, $(INCLUDES)) $(SOURCES)
+CPPFLAGS =$(addprefix -I, $(INCLUDES))
 CFLAGS =-Wall -Werror -g -O0 -std=c99
 OUTPUT =c1m2
 OBJS =$(SRCS:.c=.o)
@@ -50,5 +50,15 @@ else
 	-mfloat-abi=hard -mfpu=fpv4-sp-d16 --specs=nosys.specs
 endif
 
-%.i:%.c
+%.i: %.c
 	$(CC) -E $(CPPFLAGS) $(CFLAGS) $< -o $@
+
+.PHONY:all
+all: $(OBJS)
+
+%.o: %.c
+	$(CC) -c $(CPPFLAGS) $(CFLAGS) $< -o $@
+
+.PHONY:clean
+clean:
+rm -f $(OBJS) *.i
