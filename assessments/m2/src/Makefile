@@ -35,7 +35,7 @@ SPECS = nosys.specs
 # Compiler Flags and Defines
 CC =gcc
 LD =arm-none-eabi-ld
-LDFLAGS =-T msp432p401r.lds -Wl, -Map=$(OUTPUT).map
+LDFLAGS =-T msp432p401r.lds -Wl,-Map=$(OUTPUT).map
 CPPFLAGS =$(addprefix -I, $(INCLUDES))
 CFLAGS =-Wall -g -O0 -std=c99
 OUTPUT =c1m2
