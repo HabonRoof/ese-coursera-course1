@@ -39,7 +39,7 @@ LDFLAGS =-T msp432p401r.lds
 CPPFLAGS =$(addprefix -I, $(INCLUDES))
 CFLAGS =-Wall -g -O0 -std=c99
 OUTPUT =c1m2
-OBJS =$(SRCS:.c=.o)
+OBJS =$(SOURCES:.c=.o)
 
 ifeq ($(PLATFORM), HOST)
 	CC = gcc
@@ -59,6 +59,9 @@ endif
 %.asm: %.c
 	$(CC) -S $(CPPFLAGS) $(CFLAGS) $< -o $@
 # not sure when need to use objdump to generate asm if we have source code
+
+.PHONY:compile-obj
+compile-obj: $(OBJS)
 
 .PHONY:compile-all
 compile-all: $(SOURCES:.c=.asm)
