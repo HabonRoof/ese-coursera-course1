@@ -45,10 +45,13 @@ DEPS = $(SOURCES:.c=.dep)
 ifeq ($(PLATFORM), HOST)
 	CC = gcc
 	CFLAGS += -DHOST
+	LD = ld
 else
 	CC = arm-none-eabi-gcc
 	CFLAGS += -DMSP432 -mcpu=cortex-m4 -mthumb -march=armv7e-m \
 	-mfloat-abi=hard -mfpu=fpv4-sp-d16 --specs=nosys.specs
+	SOURCES += interrupts_msp432p401r_gcc.c \
+	startup_msp432p401r_gcc.c system_msp432p401r.c
 endif
 
 %.dep: %.c
