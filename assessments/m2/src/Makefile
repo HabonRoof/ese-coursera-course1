@@ -51,4 +51,4 @@ else
 endif
 
 %.i:%.c
-	$(CC) -E $(CPPFLAGS) $(CFLAGS) 
+	$(CC) -E $(CPPFLAGS) $(CFLAGS) $< -o $@
