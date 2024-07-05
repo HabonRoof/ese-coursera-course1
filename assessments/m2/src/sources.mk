@@ -10,7 +10,7 @@
 #*****************************************************************************
 
 # Add your Source files to this variable
-SOURCES =main.c interrupts_map432p401r_gcc.c \
+SOURCES =main.c interrupts_msp432p401r_gcc.c \
 	memory.c startup_msp432p401r_gcc.c system_msp432p401r.c
 
 # Add your include paths to this variable
