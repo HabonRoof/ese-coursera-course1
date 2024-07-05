@@ -61,4 +61,4 @@ all: $(OBJS)
 
 .PHONY:clean
 clean:
-rm -f $(OBJS) *.i
+	rm -f $(OBJS) *.i
