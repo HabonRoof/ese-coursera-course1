@@ -40,6 +40,7 @@ CPPFLAGS =$(addprefix -I, $(INCLUDES))
 CFLAGS =-Wall -g -O0 -std=c99
 OUTPUT =c1m2
 OBJS =$(SOURCES:.c=.o)
+DEPS = $(SOURCES:.c=.dep)
 
 ifeq ($(PLATFORM), HOST)
 	CC = gcc
@@ -59,6 +60,11 @@ endif
 %.asm: %.c
 	$(CC) -S $(CPPFLAGS) $(CFLAGS) $< -o $@
 # not sure when need to use objdump to generate asm if we have source code
+
+%.dep: %.c
+	$(CC) -MMD -MP -MF $@ $(CPPFLAGS) $(CFLAGS) $<
+
+-include $(DEPS)
 
 .PHONY:compile-obj
 compile-obj: $(OBJS)
