@@ -53,9 +53,6 @@ endif
 %.i: %.c
 	$(CC) -E $(CPPFLAGS) $(CFLAGS) $< -o $@
 
-%.asm: %c
-	$(CC) -S $(CPPFLAGS) $(CFLAGS) $< -o $@
-
 %.o: %.c
 	$(CC) -c $(CPPFLAGS) $(CFLAGS) $< -o $@
 
@@ -64,6 +61,9 @@ all: $(OBJS)
 
 .PHONY:compile-all
 compile-all: $(SOURCES:.c=.asm)
+
+%.asm: %c
+	$(CC) -S $(CPPFLAGS) $(CFLAGS) $< -o $@
 
 .PHONY:clean
 clean:
