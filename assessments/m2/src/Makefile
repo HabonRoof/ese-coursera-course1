@@ -35,7 +35,7 @@ SPECS = nosys.specs
 # Compiler Flags and Defines
 CC =gcc
 LD =arm-none-eabi-ld
-LDFLAGS =-T msp432p401r.lds
+LDFLAGS =-T msp432p401r.lds -Wl, -Map=$(OUTPUT).map
 CPPFLAGS =$(addprefix -I, $(INCLUDES))
 CFLAGS =-Wall -g -O0 -std=c99
 OUTPUT =c1m2
@@ -51,23 +51,24 @@ else
 	-mfloat-abi=hard -mfpu=fpv4-sp-d16 --specs=nosys.specs
 endif
 
+%.dep: %.c
+	$(CC) -MMD -MP -MF $@ $(CPPFLAGS) $(CFLAGS) $<
+
+%.o: %.c %.dep
+	$(CC) -c $(CPPFLAGS) $(CFLAGS) $< -o $@
+
 %.i: %.c
 	$(CC) -E $(CPPFLAGS) $(CFLAGS) $< -o $@
-
-%.o: %.c
-	$(CC) -c $(CPPFLAGS) $(CFLAGS) $< -o $@
 
 %.asm: %.c
 	$(CC) -S $(CPPFLAGS) $(CFLAGS) $< -o $@
 # not sure when need to use objdump to generate asm if we have source code
 
-%.dep: %.c
-	$(CC) -MMD -MP -MF $@ $(CPPFLAGS) $(CFLAGS) $<
-
 -include $(DEPS)
 
-.PHONY:compile-obj
-compile-obj: $(OBJS)
+.PHONY:size
+size:
+	size $(OUTPUT).out
 
 .PHONY:compile-all
 compile-all: $(SOURCES:.c=.asm)
