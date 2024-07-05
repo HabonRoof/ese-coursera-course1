@@ -46,7 +46,7 @@ ifeq ($(PLATFORM), HOST)
 	CFLAGS += -DHOST
 else
 	CC = arm-none-eabi-gcc
-	CFLAGS += -DMSP432 -mcpu=cortexm4 -mthumb -march-armv7e-m \
+	CFLAGS += -DMSP432 -mcpu=cortex-m4 -mthumb -march=armv7e-m \
 	-mfloat-abi=hard -mfpu=fpv4-sp-d16 --specs=nosys.specs
 endif
 
