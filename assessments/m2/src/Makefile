@@ -67,7 +67,7 @@ compile-all: $(SOURCES:.c=.asm)
 build: $(OUTPUT).out
 
 $(OUTPUT).out:$(OBJS)
-	$(CC) $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) -o $@
+	$(CC) $(OBJS) $(LDFLAGS) -o $@
 
 .PHONY:clean
 clean:
