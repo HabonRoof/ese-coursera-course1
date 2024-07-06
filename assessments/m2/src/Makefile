@@ -82,7 +82,7 @@ endif
 	$(CC) -S $(CPPFLAGS) $(CFLAGS) $< -o $@
 
 #step 3. assembler assemble .asm to object .o file
-%.o: %.c 
+%.o: %.c %.dep
 	@echo "st3"
 	$(CC) -c $(CPPFLAGS) $(CFLAGS) $< -o $@
 
