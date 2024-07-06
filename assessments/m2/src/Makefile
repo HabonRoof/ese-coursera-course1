@@ -105,9 +105,8 @@ size:
 compile-all: $(SOURCES:.c=.asm)
 
 .PHONY:build
-build: $(OUTPUT).out size %.dep
-	@echo "Platform = $(PLATFORM)"
-	@echo "LDFLAGS = $(LDFLAGS)"
+build: $(OUTPUT).out $(DEPS)
+	size 
 
 .PHONY:clean
 clean:
