@@ -48,7 +48,6 @@ DEPS = $(SOURCES:.c=.dep)
 ifeq ($(PLATFORM), MSP432)
 # arm-non-eabi toolchain
 # include MSP432 specific header files
-	@echo "Platform = MSP432"
 	INCLUDES += ../include/CMSIS \
 	../include/msp432
 # add MSP432 specific source file
@@ -59,7 +58,6 @@ ifeq ($(PLATFORM), MSP432)
 	CC = arm-none-eabi-gcc
 # change linker
 	LDFLAGS += -Wl,-T $(LINKER_FILE)
-	@echo "LDFLAGS = $(LDFLAGS)"
 # Add compiler flags
 	CFLAGS += -mcpu=$(CPU) \
 	-mthumb -march=armv7e-m \
@@ -70,7 +68,6 @@ ifeq ($(PLATFORM), MSP432)
 	SIZE = arm-none-eabi-size
 else
 # native toolchain
-	@echo "Platform = HOST"
 
 endif
 
@@ -109,6 +106,9 @@ compile-all: $(SOURCES:.c=.asm)
 
 .PHONY:build
 build: $(OUTPUT).out size
+	@echo "Platform = $(PLATFORM)"
+	@echo "LDFLAGS = $(LDFLAGS)"
+
 
 
 
