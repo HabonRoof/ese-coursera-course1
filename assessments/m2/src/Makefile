@@ -101,7 +101,7 @@ size:
 compile-all: $(SOURCES:.c=.asm)
 
 .PHONY:build
-build: $(OUTPUT).out
+build: $(OUTPUT).out size
 
 
 
