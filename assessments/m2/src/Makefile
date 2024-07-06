@@ -90,7 +90,7 @@ endif
 # 		  no manual call ld to do this, just generate .out file and its done(?)
 $(OUTPUT).out:$(OBJS)
 	@echo "st4"
-	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJS)-o $@
+	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJS) -o $@
 
 # step 5, dependency?
 %.dep: %.c
