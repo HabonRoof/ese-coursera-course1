@@ -74,23 +74,28 @@ endif
 
 # step 1. preprocessor generate .i files
 %.i: %.c
+	@echo("st1")
 	$(CC) -E $(CPPFLAGS) $(CFLAGS) $< -o $@
 
 # step 2. compiler compile .i file into .asm files
 %.asm: %.c
+	@echo("st2")
 	$(CC) -S $(CPPFLAGS) $(CFLAGS) $< -o $@
 
 #step 3. assembler assemble .asm to object .o file
 %.o: %.c %.dep
+	@echo("st3")
 	$(CC) -c $(CPPFLAGS) $(CFLAGS) $< -o $@
 
 # step 4. compiler will automatically using linker to build executable
 # 		  no manual call ld to do this, just generate .out file and its done(?)
 $(OUTPUT).out:$(OBJS)
+	@echo("st4")
 	$(CC) $(OBJS) $(LDFLAGS) -o $@
 
 # step 5, dependency
 %.dep: %.c
+	@echo("st5")
 	$(CC) -E -MM $(CPPFLAGS) $(CFLAGS) $< -o $@
 
 .PHONY:size
