@@ -82,7 +82,7 @@ endif
 	$(CC) -S $(CPPFLAGS) $(CFLAGS) $< -o $@
 
 #step 3. assembler assemble .asm to object .o file
-%.o: %.c %.dep
+%.o: %.c 
 	@echo "st3"
 	$(CC) -c $(CPPFLAGS) $(CFLAGS) $< -o $@
 
@@ -90,16 +90,16 @@ endif
 # 		  no manual call ld to do this, just generate .out file and its done(?)
 $(OUTPUT).out:$(OBJS)
 	@echo "st4"
-	$(CC) $(OBJS) $(LDFLAGS) -o $@
+	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJS)-o $@
 
-# step 5, dependency
+# step 5, dependency?
 %.dep: %.c
 	@echo "st5"
-	$(CC) -E -MM $(CPPFLAGS) $(CFLAGS) $< -o $@
+	$(CC) -MM -c $(CPPFLAGS) $(CFLAGS) $< -o $@
 
 .PHONY:size
 size:
-	size $(OUTPUT).out
+	size $(OBJS) $(OUTPUT).out 
 
 .PHONY:compile-all
 compile-all: $(SOURCES:.c=.asm)
@@ -108,9 +108,6 @@ compile-all: $(SOURCES:.c=.asm)
 build: $(OUTPUT).out size
 	@echo "Platform = $(PLATFORM)"
 	@echo "LDFLAGS = $(LDFLAGS)"
-
-
-
 
 .PHONY:clean
 clean:
