@@ -82,7 +82,7 @@ endif
 	$(CC) -S $(CPPFLAGS) $(CFLAGS) $< -o $@
 
 #step 3. assembler assemble .asm to object .o file
-%.o: %.c %.dep
+%.o: %.c
 	@echo "st3"
 	$(CC) -c $(CPPFLAGS) $(CFLAGS) $< -o $@
 
@@ -105,7 +105,7 @@ size:
 compile-all: $(SOURCES:.c=.asm)
 
 .PHONY:build
-build: $(OUTPUT).out size
+build: $(OUTPUT).out size %.dep
 	@echo "Platform = $(PLATFORM)"
 	@echo "LDFLAGS = $(LDFLAGS)"
 
