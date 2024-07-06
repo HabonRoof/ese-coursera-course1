@@ -57,8 +57,7 @@ ifeq ($(PLATFORM), MSP432)
 # change compilet to arm
 	CC = arm-none-eabi-gcc
 # change linker
-	LD = arm-none-eabi-ld
-	LDFLAGS += -T $(LINKER_FILE)
+	LDFLAGS += -Wl,-T $(LINKER_FILE)
 # Add compiler flags
 	CFLAGS += -mcpu=$(CPU) \
 	-mthumb -march=armv7e-m \
