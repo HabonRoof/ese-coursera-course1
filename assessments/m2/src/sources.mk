@@ -13,5 +13,5 @@
 SOURCES =main.c memory.c
 
 # Add your include paths to this variable
-INCLUDES =../include/CMSIS ../include/common ../include/msp432
+INCLUDES =../include/common
 
