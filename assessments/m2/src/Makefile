@@ -105,8 +105,7 @@ size:
 compile-all: $(SOURCES:.c=.asm)
 
 .PHONY:build
-build: $(OUTPUT).out $(DEPS)
-	size 
+build: $(OUTPUT).out $(DEPS) size
 
 .PHONY:clean
 clean:
