@@ -46,9 +46,9 @@ OBJS = $(SOURCES:.c=.o)
 DEPS = $(SOURCES:.c=.dep)
 
 ifeq ($(PLATFORM), MSP432)
-	@echo "Platform = MSP432"
 # arm-non-eabi toolchain
 # include MSP432 specific header files
+	@echo "Platform = MSP432"
 	INCLUDES += ../include/CMSIS \
 	../include/msp432
 # add MSP432 specific source file
