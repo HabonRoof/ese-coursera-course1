@@ -59,10 +59,10 @@ uint8_t* my_memmove(uint8_t* src, uint8_t* dst, size_t length){
     temp = (uint8_t*) malloc(sizeof(uint8_t)*length);
     // alought GPT advice me use back copy, I still want to try this noob method
     for(i = 0; i < length + 1; i++){
-      *temp + i = *src + i;
+      *(temp + i) = *(src + i);
     }
     for(i = 0; i < length + 1; i++){
-      *dst + i = *temp + i;
+      *(dst + i) = *(temp + i);
     }
     // free memory
     free(temp);
@@ -73,7 +73,7 @@ uint8_t* my_memmove(uint8_t* src, uint8_t* dst, size_t length){
   // no data corruption
   else{
     for(i = 0; i < length + 1; i++){
-      *dst + i = *src + i;
+      *(dst + i) = *(src + i);
     }
   }
   // return destination pointer
