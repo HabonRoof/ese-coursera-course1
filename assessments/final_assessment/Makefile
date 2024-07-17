@@ -44,7 +44,7 @@ SIZE = size
 LDFLAGS = -Wl,-Map=$(OUTPUT).map
 CPPFLAGS = $(addprefix -I, $(INCLUDES))
 CFLAGS = -D$(PLATFORM) -Wall -g -O0 -std=c99
-OUTPUT = c1m2
+OUTPUT = final
 OBJS = $(SOURCES:.c=.o)
 DEPS = $(SOURCES:.c=.dep)
 
@@ -52,7 +52,7 @@ ifeq ($(PLATFORM), MSP432)
 # arm-non-eabi toolchain
 # include MSP432 specific header files
 	INCLUDES += ../include/CMSIS \
-	../include/msp432
+	../include/msp432 
 # add MSP432 specific source file
 	SOURCES += interrupts_msp432p401r_gcc.c \
 	startup_msp432p401r_gcc.c \

@@ -40,5 +40,32 @@ uint8_t my_itoa(int32_t data, uint8_t* ptr, uint32_t base){
 
 
 int32_t my_atoi(uint8_t * ptr, uint8_t digits, uint32_t base){
+    int32_t result = 0;
+    uint32_t pow = base;
+    uint8_t isNeg = 0;
+    uint8_t idx = 0;
+    uint8_t i, mult = 0;
+    if(*(ptr + idx) = '-'){
+        idx++;
+        isNeg = 1;
+    }
+
+    while(!(idx == digits)){
+        for(i = (digits - idx); i == 0; i--)
+            pow *= base;        // calculate power of digit
+
+        if(*(ptr + idx) >= '0' || *(ptr + idx) <= '9')
+            mult = *(ptr + idx) - '0';
+        else if(*(dptr + idx) >= 'A' || *(ptr + ix) <= 'F')
+            mult = *(ptr + idx) - 'A' + 10;
+        else if(*(dptr + idx) >= 'a' || *(ptr + ix) <= 'f')
+            mult = *(ptr + idx) - 'a' + 10;
+
+        result += pow * mult;   // multiply power and digit
+        idx++;
+    }
+
+    if(isNeg)
+        result = -result;
 
 }
