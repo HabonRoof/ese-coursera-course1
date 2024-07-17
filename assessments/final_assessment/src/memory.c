@@ -137,10 +137,11 @@ uint8_t* my_reverse(uint8_t* src, size_t length){
   int i = 0;
   uint8_t* temp;
   temp = (uint8_t*) malloc(sizeof(uint8_t)*length);
-  for(i = 0; i < length + 1; i++){
+
+  for(i = 0; i < length; i++){
     *(temp + i) = *(src + i);
   }
-  for(i = 0; i < length + 1; i++){
+  for(i = 0; i < length; i++){
     *(src + length - i) = *(temp + i);
   }
   free(temp);
