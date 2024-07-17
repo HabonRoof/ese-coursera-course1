@@ -56,9 +56,9 @@ int32_t my_atoi(uint8_t * ptr, uint8_t digits, uint32_t base){
 
         if(*(ptr + idx) >= '0' || *(ptr + idx) <= '9')
             mult = *(ptr + idx) - '0';
-        else if(*(dptr + idx) >= 'A' || *(ptr + ix) <= 'F')
+        else if(*(ptr + idx) >= 'A' || *(ptr + idx) <= 'F')
             mult = *(ptr + idx) - 'A' + 10;
-        else if(*(dptr + idx) >= 'a' || *(ptr + ix) <= 'f')
+        else if(*(ptr + idx) >= 'a' || *(ptr + idx) <= 'f')
             mult = *(ptr + idx) - 'a' + 10;
 
         result += pow * mult;   // multiply power and digit
