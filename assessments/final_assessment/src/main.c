@@ -23,8 +23,7 @@
 #include "platform.h"
 #include "memory.h"
 
-#define MAX_LENGTH (10)
-char buffer[MAX_LENGTH];
+#define COURSE1
 
 /* A pretty boring main file */
 int main(void) {
