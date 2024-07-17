@@ -58,10 +58,10 @@ uint8_t* my_memmove(uint8_t* src, uint8_t* dst, size_t length){
     // allocate dynamic memory
     temp = (uint8_t*) malloc(sizeof(uint8_t)*length);
     // alought GPT advice me use back copy, I still want to try this noob method
-    for(i = 0; i < length + 1; i++){
+    for(i = 0; i < length; i++){
       *(temp + i) = *(src + i);
     }
-    for(i = 0; i < length + 1; i++){
+    for(i = 0; i < length; i++){
       *(dst + i) = *(temp + i);
     }
     // free memory
@@ -72,7 +72,7 @@ uint8_t* my_memmove(uint8_t* src, uint8_t* dst, size_t length){
   }
   // no data corruption
   else{
-    for(i = 0; i < length + 1; i++){
+    for(i = 0; i < length; i++){
       *(dst + i) = *(src + i);
     }
   }
@@ -87,10 +87,10 @@ uint8_t* my_memcopy(uint8_t* src, uint8_t * dst, size_t length){
 
   if((src + length) > dst || dst + length > src){
     temp = (uint8_t*) malloc(sizeof(uint8_t)*length);
-    for(i = 0; i < length + 1; i++){
+    for(i = 0; i < length; i++){
       *(temp + i) = *(src + i);
     }
-    for(i = 0; i < length + 1; i++){
+    for(i = 0; i < length; i++){
       *(dst + i) = *(temp + i);
     }
     // free memory
@@ -101,7 +101,7 @@ uint8_t* my_memcopy(uint8_t* src, uint8_t * dst, size_t length){
   }
   // no data corruption
   else{
-    for(i = 0; i < length + 1; i++){
+    for(i = 0; i < length; i++){
       *(dst + i) = *(src + i);
     }
   }
@@ -115,7 +115,7 @@ uint8_t* my_memset(uint8_t* src, size_t length, uint8_t value){
   if(length == 0)
     return src;
 
-  for(i = 0; i < length + 1; i ++){
+  for(i = 0; i < length; i ++){
     *(src + i) = value;
   }
   return src;
@@ -127,7 +127,7 @@ uint8_t* my_memzero(uint8_t* src, size_t length){
   if(length == 0)
     return src;
 
-  for(i = 0; i < length + 1; i ++){
+  for(i = 0; i < length; i ++){
     *(src + i) = 0;
   }
   return src;
