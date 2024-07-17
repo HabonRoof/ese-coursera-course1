@@ -24,6 +24,7 @@
 #include "data.h"
 #include "stats.h"
 
+#define VERBOSE
 int8_t test_data1() {
   uint8_t * ptr;
   int32_t num = -4096;
