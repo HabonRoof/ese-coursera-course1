@@ -142,7 +142,7 @@ uint8_t* my_reverse(uint8_t* src, size_t length){
     *(temp + i) = *(src + i);
   }
   for(i = 0; i < length; i++){
-    *(src + length - i) = *(temp + i);
+    *(src + length - i - 1) = *(temp + i);
   }
   free(temp);
   return src;
