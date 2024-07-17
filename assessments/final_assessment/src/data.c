@@ -10,11 +10,10 @@ uint8_t my_itoa(int32_t data, uint8_t* ptr, uint32_t base){
 
     uint8_t digit = 0;
     uint8_t idx = 0;
-    uint8_t q = 0;
 
     if(base == 10){
         *ptr = '-';     // add sign
-        data *= -1;     // convert data to positive\
+        data *= -1;     // convert data to positive
         idx++;
     }
 
@@ -45,7 +44,7 @@ int32_t my_atoi(uint8_t * ptr, uint8_t digits, uint32_t base){
     uint8_t isNeg = 0;
     uint8_t idx = 0;
     uint8_t i, mult = 0;
-    if(*(ptr + idx) = '-'){
+    if(*(ptr + idx) == '-'){
         idx++;
         isNeg = 1;
     }
