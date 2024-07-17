@@ -3,13 +3,13 @@
  *
  *****************************************************************************/
 
-#include "../include/common/memory.h"
-#include "../include/common/data.h"
+#include "memory.h"
+#include "data.h"
 
-uint8_t my_itoa(int32_t data, uint8_t* ptr, uint32_t base){
+__uint8_t my_itoa(int32_t data, __uint8_t* ptr, uint32_t base){
 
-    uint8_t digit = 0;
-    uint8_t idx = 0;
+    __uint8_t digit = 0;
+    __uint8_t idx = 0;
 
     if(base == 10){
         *ptr = '-';     // add sign
@@ -38,12 +38,12 @@ uint8_t my_itoa(int32_t data, uint8_t* ptr, uint32_t base){
 }
 
 
-int32_t my_atoi(uint8_t * ptr, uint8_t digits, uint32_t base){
+int32_t my_atoi(__uint8_t * ptr, __uint8_t digits, uint32_t base){
     int32_t result = 0;
     uint32_t pow = base;
-    uint8_t isNeg = 0;
-    uint8_t idx = 0;
-    uint8_t i, mult = 0;
+    __uint8_t isNeg = 0;
+    __uint8_t idx = 0;
+    __uint8_t i, mult = 0;
     if(*(ptr + idx) == '-'){
         idx++;
         isNeg = 1;
@@ -66,6 +66,6 @@ int32_t my_atoi(uint8_t * ptr, uint8_t digits, uint32_t base){
 
     if(isNeg)
         result = -result;
-        
+
     return result;
 }

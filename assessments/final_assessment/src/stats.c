@@ -44,12 +44,12 @@ unsigned char median, maximum, minimum, mean;
 //   return 0;
 // }
 
-unsigned char print_array(unsigned char *array, int8_t size) {
+unsigned char print_array(unsigned char *array, __uint8_t size) {
  #ifdef VERBOSE
 
   if (size > 0) {
     printf("array[%d] = ", SIZE);
-    for (int8_t i = 0; i < size; i++) {
+    for (__uint8_t i = 0; i < size; i++) {
       printf("%d, ", array[i]);
     }
     printf("\n\r");
@@ -67,7 +67,7 @@ unsigned char print_array(unsigned char *array, int8_t size) {
  * @param size the size of array
  * @return 0 of no error
  */
-unsigned char print_statistics(unsigned char *array, int8_t size) {
+unsigned char print_statistics(unsigned char *array, __uint8_t size) {
   median = find_median(array, size);
   mean = find_mean(array, size);
   maximum = find_maximim(array, size);
@@ -86,7 +86,7 @@ unsigned char print_statistics(unsigned char *array, int8_t size) {
  * @param size the size of an array
  * @return 0 if no error
  */
-unsigned char find_median(unsigned char *array, int8_t size) {
+unsigned char find_median(unsigned char *array, __uint8_t size) {
   sort_array(array, size);
   return array[SIZE / 2];
 }
@@ -97,10 +97,10 @@ unsigned char find_median(unsigned char *array, int8_t size) {
  * @param size the size of an array
  * @return 0 if no error
  */
-unsigned char find_mean(unsigned char *array, int8_t size) {
+unsigned char find_mean(unsigned char *array, __uint8_t size) {
   __uint32_t total = 0;
-  int8_t mean = 0;
-  for(int8_t i = 0; i < size - 1; i++) {
+  __uint8_t mean = 0;
+  for(__uint8_t i = 0; i < size - 1; i++) {
     total += array[i];
   }
   mean = total / size;
@@ -113,7 +113,7 @@ unsigned char find_mean(unsigned char *array, int8_t size) {
  * @param size the size of an array
  * @return 0 if no error
  */
-unsigned char find_maximim(unsigned char *array, int8_t size) {
+unsigned char find_maximim(unsigned char *array, __uint8_t size) {
   sort_array(array, size);
   return array[0];
 }
@@ -124,7 +124,7 @@ unsigned char find_maximim(unsigned char *array, int8_t size) {
  * @param size the size of an array
  * @return 0 if no error
  */
-unsigned char find_minimum(unsigned char *array, int8_t size) {
+unsigned char find_minimum(unsigned char *array, __uint8_t size) {
   sort_array(array, size);
   return array[size - 1];
 }
@@ -135,12 +135,12 @@ unsigned char find_minimum(unsigned char *array, int8_t size) {
  * @param size the size of an array
  * @return 0 if no error
  */
-unsigned char sort_array(unsigned char *array, int8_t size) {
-  int8_t temp;
+unsigned char sort_array(unsigned char *array, __uint8_t size) {
+  __uint8_t temp;
   if(size <= 0)
     return 0;
-  for(int8_t i = 0; i < size - 1; i++) {
-    for(int8_t j = 0; j < size - i - 1; j++){
+  for(__uint8_t i = 0; i < size - 1; i++) {
+    for(__uint8_t j = 0; j < size - i - 1; j++){
       if(array[j] < array[j + 1]) {
           temp = array[j];
           array[j] = array [j + 1];
