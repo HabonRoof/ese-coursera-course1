@@ -10,7 +10,7 @@
 #*****************************************************************************
 
 # Add your Source files to this variable
-SOURCES = main.c memory.c data.c status.c course1.c
+SOURCES = main.c memory.c data.c stats.c course1.c
 
 # Add your include paths to this variable
 INCLUDES =../include/common
