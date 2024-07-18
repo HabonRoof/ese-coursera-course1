@@ -48,6 +48,14 @@ OUTPUT = final
 OBJS = $(SOURCES:.c=.o)
 DEPS = $(SOURCES:.c=.dep)
 
+ifeq ($(VERBOSE), TRUE)
+	CFLAGS += -DVERBOSE
+endif
+
+ifeq ($(COURSE1), TRUE)
+	CFLAGS += -DCOURSE1
+endif
+
 ifeq ($(PLATFORM), MSP432)
 # arm-non-eabi toolchain
 # include MSP432 specific header files
