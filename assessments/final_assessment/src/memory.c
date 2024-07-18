@@ -133,21 +133,17 @@ uint8_t* my_memzero(uint8_t* src, size_t length){
   return src;
 }
 
-uint8_t* my_reverse(uint8_t* src, size_t length){
-  int i = 0;
-  uint8_t* temp;
-  temp = (uint8_t*) malloc(sizeof(uint8_t)*length);
-
-  if (temp == NULL) return src; // Check for allocation failure
-
-  for(i = 0; i < length; i++){
-    *(temp + i) = *(src + i);
-  }
-  for(i = 0; i < length; i++){
-    *(src + length - i - 1) = *(temp + i);
-  }
-  free(temp);
-  return src;
+uint8_t* my_reverse(uint8_t* src, size_t length) {
+    uint8_t* start = src;
+    uint8_t* end = src + length - 1;
+    while (start < end) {
+        uint8_t temp = *start;
+        *start = *end;
+        *end = temp;
+        start++;
+        end--;
+    }
+    return src;
 }
 
 int32_t* reserve_words(size_t length){
