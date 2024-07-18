@@ -6,72 +6,95 @@
 #include "memory.h"
 #include "data.h"
 
-uint8_t my_itoa(int32_t data, uint8_t* ptr, uint32_t base){
+uint8_t my_itoa(int32_t data, uint8_t* ptr, uint32_t base) {
+    if (base < 2 || base > 16) {
+        return 0; // Unsupported base
+    }
+
+    uint8_t* start = ptr;
     uint8_t digit = 0;
-    uint8_t idx = 0;
+    uint8_t length = 0;
 
     if (data == 0) {
-        *ptr = '0';
-        *(ptr + 1) = 0;
-        return 2;
+        *ptr++ = '0';
+        *ptr = '\0';
+        return 2; // Including null terminator
     }
 
-    if(base == 10 && data < 0){
-        *ptr = '-';     // add sign
-        data = -data;     // convert data to positive
-        idx++;
+    if (base == 10 && data < 0) {
+        *ptr++ = '-';
+        length++;
+        if (data == INT32_MIN) {
+            data = INT32_MAX;
+            data += 1; // Handle the special case for -2147483648
+        } else {
+            data = -data;
+        }
     }
 
-    while(data != 0){
+    uint8_t* temp_ptr = ptr;
+
+    while (data != 0) {
         digit = data % base;
         data = data / base;
-
-        if(digit < 10)
-            *(ptr + idx) = digit + '0';
-        else if (digit < 16) // modify the range check to (digit < 16)
-            *(ptr + idx) = digit + 'A' - 10;
-        idx++;
+        if (digit < 10) {
+            *temp_ptr++ = digit + '0';
+        } else {
+            *temp_ptr++ = digit - 10 + 'A';
+        }
+        length++;
     }
 
-    if(*ptr == '-')
-        // start from second digit
-        my_reverse(ptr + 1, idx - 1);
-    else
-        my_reverse(ptr, idx - 1);
+    *temp_ptr = '\0'; // Null terminator
+    length++;
 
-    *(ptr + idx) = 0;
-    return idx;
+    if (*start == '-') {
+        my_reverse(ptr, length - 2); // Exclude sign and null terminator
+    } else {
+        my_reverse(start, length - 1); // Exclude null terminator
+    }
+
+    return length;
 }
 
 
-int32_t my_atoi(uint8_t * ptr, uint8_t digits, uint32_t base){
+int32_t my_atoi(uint8_t * ptr, uint8_t digits, uint32_t base) {
+    if (base < 2 || base > 16) {
+        return 0; // Unsupported base
+    }
+
     int32_t result = 0;
-    uint32_t pow = base;
+    uint32_t pow = 1;
     uint8_t isNeg = 0;
-    uint8_t idx = 0;
-    uint8_t i, mult = 0;
-    if(*(ptr + idx) == '-'){
-        idx++;
+    uint8_t* end_ptr = ptr + digits - 1; // Pointer to the last digit
+
+    if (*ptr == '-') {
         isNeg = 1;
+        ptr++; // Move past the negative sign
+        digits--; // Decrease digit count since the negative sign is not part of the number
     }
 
-    while(!(idx == digits)){
-        for(i = (digits - idx); i == 0; i--)
-            pow *= base;        // calculate power of digit
+    while (digits > 0) {
+        uint8_t digit = *end_ptr;
+        uint8_t mult = 0;
 
-        if(*(ptr + idx) >= '0' || *(ptr + idx) <= '9')
-            mult = *(ptr + idx) - '0';
-        else if(*(ptr + idx) >= 'A' || *(ptr + idx) <= 'F')
-            mult = *(ptr + idx) - 'A' + 10;
-        else if(*(ptr + idx) >= 'a' || *(ptr + idx) <= 'f')
-            mult = *(ptr + idx) - 'a' + 10;
+        if (digit >= '0' && digit <= '9') {
+            mult = digit - '0';
+        } else if (digit >= 'A' && digit <= 'F') {
+            mult = digit - 'A' + 10;
+        } else if (digit >= 'a' && digit <= 'f') {
+            mult = digit - 'a' + 10;
+        }
 
-        result += pow * mult;   // multiply power and digit
-        idx++;
+        result += pow * mult;
+        pow *= base;
+        end_ptr--;
+        digits--;
     }
 
-    if(isNeg)
+    if (isNeg) {
         result = -result;
-        
+    }
+
     return result;
 }
