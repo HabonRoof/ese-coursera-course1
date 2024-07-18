@@ -7,9 +7,14 @@
 #include "data.h"
 
 uint8_t my_itoa(int32_t data, uint8_t* ptr, uint32_t base){
-
     uint8_t digit = 0;
     uint8_t idx = 0;
+
+    if (data == 0) {
+        *ptr = '0';
+        *(ptr + 1) = 0;
+        return 2;
+    }
 
     if(base == 10 && data < 0){
         *ptr = '-';     // add sign
@@ -22,9 +27,9 @@ uint8_t my_itoa(int32_t data, uint8_t* ptr, uint32_t base){
         data = data / base;
 
         if(digit < 10)
-            *(ptr + idx) = digit + 48;
-        else if (digit >= 10 && digit <= 16)
-            *(ptr + idx) = digit + 55;
+            *(ptr + idx) = digit + '0';
+        else if (digit < 16) // modify the range check to (digit < 16)
+            *(ptr + idx) = digit + 'A' - 10;
         idx++;
     }
 

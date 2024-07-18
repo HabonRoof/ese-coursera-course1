@@ -138,6 +138,8 @@ uint8_t* my_reverse(uint8_t* src, size_t length){
   uint8_t* temp;
   temp = (uint8_t*) malloc(sizeof(uint8_t)*length);
 
+  if (temp == NULL) return src; // Check for allocation failure
+
   for(i = 0; i < length; i++){
     *(temp + i) = *(src + i);
   }
