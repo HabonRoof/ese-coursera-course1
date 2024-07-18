@@ -43,7 +43,6 @@ unsigned char median, maximum, minimum, mean;
 //   print_statistics(test, SIZE);
 //   return 0;
 // }
-#define VERBOSE
 
 unsigned char print_array(unsigned char *array, __uint8_t size) {
  #ifdef VERBOSE
