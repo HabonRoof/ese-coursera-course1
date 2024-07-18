@@ -40,7 +40,7 @@ int8_t test_data1() {
   }
 
   digits = my_itoa( num, ptr, BASE_16);   
-  PRINTF("  my_itoa digits: %d\n", digit);
+  PRINTF("  my_itoa digits: %d\n", digits);
   PRINTF("  my_itoa result: %s\n", ptr);
   value = my_atoi( ptr, digits, BASE_16);
   #ifdef VERBOSE

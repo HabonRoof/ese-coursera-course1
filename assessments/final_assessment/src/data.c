@@ -11,9 +11,9 @@ uint8_t my_itoa(int32_t data, uint8_t* ptr, uint32_t base){
     uint8_t digit = 0;
     uint8_t idx = 0;
 
-    if(base == 10){
+    if(base == 10 && data < 0){
         *ptr = '-';     // add sign
-        data *= -1;     // convert data to positive
+        data = -data;     // convert data to positive
         idx++;
     }
 
@@ -23,17 +23,18 @@ uint8_t my_itoa(int32_t data, uint8_t* ptr, uint32_t base){
 
         if(digit < 10)
             *(ptr + idx) = digit + 48;
-        else
+        else if (digit >= 10 && digit <= 16)
             *(ptr + idx) = digit + 55;
         idx++;
     }
+
     if(*ptr == '-')
         // start from second digit
         my_reverse(ptr + 1, idx - 1);
     else
-        my_reverse(ptr, idx);
+        my_reverse(ptr, idx - 1);
 
-    *(ptr + idx) = '\n';
+    *(ptr + idx) = 0;
     return idx;
 }
 
